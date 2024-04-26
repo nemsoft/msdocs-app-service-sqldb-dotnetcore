@@ -9,6 +9,7 @@ using DotNetCoreSqlDb;
 using DotNetCoreSqlDb.Data;
 using DotNetCoreSqlDb.Models;
 using Microsoft.Extensions.Caching.Distributed;
+using System.Diagnostics;
 
 namespace DotNetCoreSqlDb.Controllers
 {
@@ -42,6 +43,11 @@ namespace DotNetCoreSqlDb.Controllers
                 TodoListByteArray = ConvertData<Todo>.ObjectListToByteArray(todos);
                 await _cache.SetAsync(_TodoItemsCacheKey, TodoListByteArray);
             }
+
+            // Log messages
+            Console.WriteLine("Console writeline method.");
+            Trace.WriteLine("Trace message.");
+            Debug.WriteLine("Debugging message.");
 
             return View(todos);
         }
